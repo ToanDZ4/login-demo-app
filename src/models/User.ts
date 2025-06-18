@@ -10,23 +10,22 @@ export interface IUser extends mongoose.Document {
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, 'Please provide a username'],
+    required: true,
     unique: true,
     trim: true,
     validate: {
       validator: function(v: string) {
-        return /^[a-zA-Z0-9]+$/.test(v);
+        return !/[^\x00-\x7F]/.test(v); // Only ASCII characters allowed
       },
       message: 'Username cannot contain special characters'
     }
   },
   password: {
     type: String,
-    required: [true, 'Please provide a password'],
-    minlength: 6,
+    required: true,
     validate: {
       validator: function(v: string) {
-        return /^[a-zA-Z0-9]+$/.test(v);
+        return !/[^\x00-\x7F]/.test(v); // Only ASCII characters allowed
       },
       message: 'Password cannot contain special characters'
     }
@@ -39,12 +38,16 @@ const userSchema = new mongoose.Schema({
 userSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
   
-  const salt = await bcrypt.genSalt(10);
-  this.password = await bcrypt.hash(this.password, salt);
-  next();
+  try {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+    next();
+  } catch (error: any) {
+    next(error);
+  }
 });
 
-// Compare password method
+// Method to compare password
 userSchema.methods.comparePassword = async function(candidatePassword: string): Promise<boolean> {
   return bcrypt.compare(candidatePassword, this.password);
 };
