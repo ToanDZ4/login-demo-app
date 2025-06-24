@@ -6,6 +6,7 @@ import authRoutes from './routes/authRoutes';
 import feedbackRoutes from './routes/feedbackRoutes';
 import dashboardRoutes from './routes/dashboardRoutes';
 import roomRoutes from './routes/roomRoutes';
+import checkinRoutes from './routes/checkinRoutes';
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/rooms', roomRoutes);
+app.use('/api/checkin', checkinRoutes);
 
 // Connect to MongoDB
 const connectDB = async () => {
