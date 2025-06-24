@@ -5,6 +5,7 @@ import Register from './components/Register';
 import AdminFeedback from './components/AdminFeedback';
 import AdminDashboard from './components/AdminDashboard';
 import ReceptionRoomManagement from './components/ReceptionRoomManagement';
+import ReceptionCheckin from './components/ReceptionCheckin';
 
 const App: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const App: React.FC = () => {
         <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/reception/rooms" element={<ReceptionRoomManagement />} />
+        <Route path="/reception/checkin" element={<ReceptionCheckin />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
