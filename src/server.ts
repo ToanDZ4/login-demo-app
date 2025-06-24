@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import authRoutes from './routes/authRoutes';
 import feedbackRoutes from './routes/feedbackRoutes';
 import dashboardRoutes from './routes/dashboardRoutes';
+import roomRoutes from './routes/roomRoutes';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(cors());
 app.use('/api/auth', authRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/rooms', roomRoutes);
 
 // Connect to MongoDB
 const connectDB = async () => {
