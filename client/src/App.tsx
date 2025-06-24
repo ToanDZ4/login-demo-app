@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import Login from './components/Login';
 import Register from './components/Register';
 import AdminFeedback from './components/AdminFeedback';
+import AdminDashboard from './components/AdminDashboard';
 
 const App: React.FC = () => {
   return (
@@ -13,6 +14,7 @@ const App: React.FC = () => {
         <Route path="/auth/forgot-password" element={<div>Forgot Password Page</div>} />
         <Route path="/home" element={<div>Home Page</div>} />
         <Route path="/admin/feedback" element={<AdminFeedback />} />
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
