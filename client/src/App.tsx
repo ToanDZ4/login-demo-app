@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import Register from './components/Register';
+import AdminFeedback from './components/AdminFeedback';
 
 const App: React.FC = () => {
   return (
@@ -11,6 +12,7 @@ const App: React.FC = () => {
         <Route path="/auth/register" element={<Register />} />
         <Route path="/auth/forgot-password" element={<div>Forgot Password Page</div>} />
         <Route path="/home" element={<div>Home Page</div>} />
+        <Route path="/admin/feedback" element={<AdminFeedback />} />
         <Route path="/" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>
